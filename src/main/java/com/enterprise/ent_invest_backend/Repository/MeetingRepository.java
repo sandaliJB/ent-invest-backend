@@ -1,4 +1,4 @@
-package com.enterprise.ent_invest_backend.Service;
+package com.enterprise.ent_invest_backend.Repository;
 
 import com.enterprise.ent_invest_backend.Model.Meeting;
 import org.springframework.data.mongodb.repository.MongoRepository;
