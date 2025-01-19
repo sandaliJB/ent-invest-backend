@@ -2,27 +2,35 @@ package com.enterprise.ent_invest_backend.Controller;
 
 import com.enterprise.ent_invest_backend.Model.Investment;
 import com.enterprise.ent_invest_backend.Service.InvestmentService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin("http://localhost:5173")
 @RequestMapping("/api/investment")
 public class InvestmentController {
     @Autowired
     private InvestmentService investmentService;
 
-
-    // Create a new Investment
     @PostMapping("/add")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
-    public ResponseEntity<Investment> createInvestment(@RequestBody Investment investment) {
-        Investment createdInvestment = investmentService.createInvestment(investment);
-        return ResponseEntity.ok(createdInvestment);
+    public ResponseEntity<?> createInvestment(@RequestPart("investment") String eventJson, @RequestPart("imageFile") MultipartFile imageFile) throws IOException {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            Investment event = objectMapper.readValue(eventJson, Investment.class);
+            Investment eventExist = investmentService.createInvestment(event, imageFile);
+            return new ResponseEntity<>(eventExist, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     // Get Investment by InvestmentID

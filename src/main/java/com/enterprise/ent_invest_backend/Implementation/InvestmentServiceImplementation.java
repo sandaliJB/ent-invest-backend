@@ -4,6 +4,9 @@ import com.enterprise.ent_invest_backend.Repository.InvestmentRepository;
 import com.enterprise.ent_invest_backend.Service.InvestmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,8 +17,13 @@ public class InvestmentServiceImplementation implements InvestmentService {
     private InvestmentRepository investmentRepository;
 
     @Override
-    public Investment createInvestment(Investment investment) {
-        return investmentRepository.save(investment);
+    public Investment createInvestment(Investment investor, MultipartFile imageFile) throws IOException {
+        // Save the image to the database or filesystem
+        byte[] imageData = imageFile.getBytes();
+        investor.setImageName(imageFile.getOriginalFilename());
+        investor.setImageData(imageData);
+        investor.setContentType(imageFile.getContentType());
+        return investmentRepository.save(investor);
     }
 
     @Override

@@ -6,7 +6,6 @@ import org.springframework.security.authentication.ott.JdbcOneTimeTokenService;
 
 @SpringBootApplication
 public class EntInvestBackendApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(EntInvestBackendApplication.class, args);
 	}
