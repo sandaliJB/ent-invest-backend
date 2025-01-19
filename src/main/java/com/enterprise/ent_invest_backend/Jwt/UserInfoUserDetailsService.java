@@ -1,7 +1,7 @@
 package com.enterprise.ent_invest_backend.Jwt;
 
-import com.entsite.ent_invest_backend.entity.User;
-import com.entsite.ent_invest_backend.repository.UserRepository;
+import com.enterprise.ent_invest_backend.Model.User;
+import com.enterprise.ent_invest_backend.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
