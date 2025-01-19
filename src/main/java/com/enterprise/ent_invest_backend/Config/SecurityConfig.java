@@ -29,6 +29,7 @@ public class SecurityConfig {
     @Autowired
     private UserInfoUserDetailsService userDetailsService; // Injected directly
 
+    /*
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -36,7 +37,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/user/signup", "/api/user/signing", "/api/user/welcome", "/api/user/deleteAll").permitAll() // Public endpoints
                         .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll() // Allow Swagger UI and API docs access
-                        .requestMatchers("/api/user/**").authenticated() // Protected user endpoints
+                        .requestMatchers("/api/investment/add").permitAll()  // Protected user endpoints
+                        //.requestMatchers("/api/user/**").authenticated() // Protected user endpoints
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Stateless session management
@@ -46,6 +48,24 @@ public class SecurityConfig {
 
         return http.build();
     }
+     */
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(csrf -> csrf.disable()) // Disable CSRF protection
+                .authorizeHttpRequests(authorize -> authorize
+                        .anyRequest().permitAll() // Allow all endpoints to be accessed without restriction
+                )
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Stateless session management
+                )
+                .authenticationProvider(authenticationProvider()) // Custom authentication provider
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class); // Add custom JWT filter
+
+        return http.build();
+    }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
