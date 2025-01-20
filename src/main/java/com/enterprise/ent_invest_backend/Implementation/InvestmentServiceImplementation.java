@@ -17,13 +17,11 @@ public class InvestmentServiceImplementation implements InvestmentService {
     private InvestmentRepository investmentRepository;
 
     @Override
-    public Investment createInvestment(Investment investor, MultipartFile imageFile) throws IOException {
-        // Save the image to the database or filesystem
-        byte[] imageData = imageFile.getBytes();
-        investor.setImageName(imageFile.getOriginalFilename());
-        investor.setImageData(imageData);
-        investor.setContentType(imageFile.getContentType());
-        return investmentRepository.save(investor);
+    public Investment createInvestment(Investment investment, MultipartFile imageFile) throws IOException {
+        investment.setImageName(imageFile.getOriginalFilename());
+        investment.setContentType(imageFile.getContentType());
+        investment.setImageData(imageFile.getBytes());
+        return investmentRepository.save(investment);
     }
 
     @Override
