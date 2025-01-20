@@ -43,9 +43,13 @@ public class UserService {
      * Add a new user to the system. Password is encoded before saving.
      */
     public String addUser(User user) {
+        if (userRepository.findByUserEmail(user.getUserEmail()).isPresent()) {
+            return "User already registered as a user";
+        }
+        // Hash the password
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        return "User added to the system.";
+        return "User registered successfully";
     }
 
     /**

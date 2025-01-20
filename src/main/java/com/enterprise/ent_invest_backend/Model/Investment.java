@@ -20,6 +20,7 @@ public class Investment {
     private String budgetLimit;
     private String address;
     private String telNumber;
+
     private String imageName;
     private byte[] imageData;
     private String contentType;

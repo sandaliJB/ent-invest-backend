@@ -1,5 +1,6 @@
 package com.enterprise.ent_invest_backend.Jwt;
 
+import com.enterprise.ent_invest_backend.Dto.AuthenticationResponse;
 import com.enterprise.ent_invest_backend.Model.User;
 import com.enterprise.ent_invest_backend.Repository.UserRepository;
 import io.jsonwebtoken.Claims;
@@ -68,18 +69,21 @@ public class JwtService {
     }
 
     // Generate a token with additional claims
-    public String generateToken(String email) {
+    public AuthenticationResponse generateToken(String email) {
         Map<String, Object> claims = new HashMap<>();
         User user = userRepository.findByUserEmail(email).orElseThrow(() ->
                 new UsernameNotFoundException("User with email " + email + " not found"));
 
-        // Add user-specific claims
+        // Add additional claims to the token
         claims.put("userId", user.getUserId());
         claims.put("firstName", user.getFirstName());
         claims.put("lastName", user.getLastName());
         claims.put("role", user.getUserRole());
 
-        return createToken(claims, email);
+        String token = createToken(claims, email);
+
+        // Return both token and user details
+        return new AuthenticationResponse(token, user.getUserId(), user.getFirstName(), user.getLastName(), user.getUserRole(), user.getUserEmail());
     }
 
     // Create the JWT token
