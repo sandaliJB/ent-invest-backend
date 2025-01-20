@@ -1,6 +1,7 @@
 package com.enterprise.ent_invest_backend.Controller;
 
 import com.enterprise.ent_invest_backend.Dto.AuthRequest;
+import com.enterprise.ent_invest_backend.Dto.AuthenticationResponse;
 import com.enterprise.ent_invest_backend.Jwt.JwtService;
 import com.enterprise.ent_invest_backend.Jwt.UserService;
 import com.enterprise.ent_invest_backend.Model.User;
@@ -64,7 +65,7 @@ public class UserController {
      * Sign in to authenticate the user and get the JWT token.
      */
     @PostMapping("/signing")
-    public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
+    public AuthenticationResponse authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authRequest.getUserEmail(), authRequest.getPassword()));
         if (authentication.isAuthenticated()) {
