@@ -5,6 +5,7 @@ import com.enterprise.ent_invest_backend.Dto.AuthenticationResponse;
 import com.enterprise.ent_invest_backend.Jwt.JwtService;
 import com.enterprise.ent_invest_backend.Jwt.UserService;
 import com.enterprise.ent_invest_backend.Model.User;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -100,5 +101,10 @@ public class UserController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public User updateUser(@RequestBody User user, @PathVariable String id) {
         return userService.updateUser(user, id);
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        return userService.logout(session);
     }
 }
