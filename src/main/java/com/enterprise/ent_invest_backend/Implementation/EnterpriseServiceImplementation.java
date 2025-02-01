@@ -5,7 +5,9 @@ import com.enterprise.ent_invest_backend.Repository.EnterpriseRepository;
 import com.enterprise.ent_invest_backend.Service.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +17,10 @@ public class EnterpriseServiceImplementation implements EnterpriseService {
     private EnterpriseRepository enterpriseRepository;
 
     @Override
-    public Enterprise createEnterprise(Enterprise enterprise) {
+    public Enterprise createEnterprise(Enterprise enterprise, MultipartFile imageFile) throws IOException {
+        enterprise.setImageName(imageFile.getOriginalFilename());
+        enterprise.setContentType(imageFile.getContentType());
+        enterprise.setImageFile(imageFile.getBytes());
         return enterpriseRepository.save(enterprise);
     }
 
@@ -80,8 +85,8 @@ public class EnterpriseServiceImplementation implements EnterpriseService {
             if (enterpriseDetails.getImageName() != null && !enterpriseDetails.getImageName().isBlank()) {
                 existingEnterprise.setImageName(enterpriseDetails.getImageName());
             }
-            if (enterpriseDetails.getImageData() != null && enterpriseDetails.getImageData().length > 0) {
-                existingEnterprise.setImageData(enterpriseDetails.getImageData());
+            if (enterpriseDetails.getImageFile() != null && enterpriseDetails.getImageFile().length > 0) {
+                existingEnterprise.setImageFile(enterpriseDetails.getImageFile());
             }
             if (enterpriseDetails.getContentType() != null && !enterpriseDetails.getContentType().isBlank()) {
                 existingEnterprise.setContentType(enterpriseDetails.getContentType());

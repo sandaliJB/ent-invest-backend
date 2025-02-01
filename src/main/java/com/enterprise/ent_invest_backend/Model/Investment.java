@@ -22,7 +22,7 @@ public class Investment {
     private String telNumber;
 
     private String imageName;
-    private byte[] imageData;
+    private byte[] imageFile;
     private String contentType;
 
     public String getInvestmentId() {
@@ -105,12 +105,12 @@ public class Investment {
         this.imageName = imageName;
     }
 
-    public byte[] getImageData() {
-        return imageData;
+    public byte[] getImageFile() {
+        return imageFile;
     }
 
-    public void setImageData(byte[] imageData) {
-        this.imageData = imageData;
+    public void setImageFile(byte[] imageFile) {
+        this.imageFile = imageFile;
     }
 
     public String getContentType() {

@@ -2,6 +2,7 @@ package com.enterprise.ent_invest_backend.Jwt;
 
 import com.enterprise.ent_invest_backend.Model.User;
 import com.enterprise.ent_invest_backend.Repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -49,7 +50,7 @@ public class UserService {
         // Hash the password
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        return "User registered successfully";
+        return user.getUserId();
     }
 
     /**
@@ -94,5 +95,10 @@ public class UserService {
      */
     public void deleteAllUsers() {
         userRepository.deleteAll();
+    }
+
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "Logged out successfully";
     }
 }
