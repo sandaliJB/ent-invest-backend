@@ -18,7 +18,7 @@ public class Enterprise {
     private String telNumber;
     private String webUrl;
     private String imageName;
-    private byte[] imageData;
+    private byte[] imageFile;
     private String contentType;
 
     public String getEnterpriseId() {
@@ -117,12 +117,12 @@ public class Enterprise {
         this.imageName = imageName;
     }
 
-    public byte[] getImageData() {
-        return imageData;
+    public byte[] getImageFile() {
+        return imageFile;
     }
 
-    public void setImageData(byte[] imageData) {
-        this.imageData = imageData;
+    public void setImageFile(byte[] imageFile) {
+        this.imageFile = imageFile;
     }
 
     public String getContentType() {

@@ -20,7 +20,7 @@ public class InvestmentServiceImplementation implements InvestmentService {
     public Investment createInvestment(Investment investment, MultipartFile imageFile) throws IOException {
         investment.setImageName(imageFile.getOriginalFilename());
         investment.setContentType(imageFile.getContentType());
-        investment.setImageData(imageFile.getBytes());
+        investment.setImageFile(imageFile.getBytes());
         return investmentRepository.save(investment);
     }
 
@@ -80,8 +80,8 @@ public class InvestmentServiceImplementation implements InvestmentService {
             if (investmentDetails.getImageName() != null && !investmentDetails.getImageName().isBlank()) {
                 existingInvestment.setImageName(investmentDetails.getImageName());
             }
-            if (investmentDetails.getImageData() != null && investmentDetails.getImageData().length > 0) {
-                existingInvestment.setImageData(investmentDetails.getImageData());
+            if (investmentDetails.getImageFile() != null && investmentDetails.getImageFile().length > 0) {
+                existingInvestment.setImageFile(investmentDetails.getImageFile());
             }
             if (investmentDetails.getContentType() != null && !investmentDetails.getContentType().isBlank()) {
                 existingInvestment.setContentType(investmentDetails.getContentType());
