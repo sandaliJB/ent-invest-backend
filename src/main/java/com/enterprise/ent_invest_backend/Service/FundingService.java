@@ -10,4 +10,5 @@ public interface FundingService {
     FundingProject createProject(FundingProject fundingProject);
     List<FundingProject> getAllProjects();
     FundTransaction fundProject(String projectId, String investorId, double amount);
+    void publishProject(String projectId);
 }

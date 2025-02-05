@@ -47,4 +47,16 @@ public class FundingServiceImplementation implements FundingService {
 
         return fundTransactionRepository.save(transaction);
     }
+    @Override
+    public void publishProject(String projectId) {
+        // Find the project by ID
+        FundingProject project = fundingProjectRepository.findById(projectId)
+                .orElseThrow(() -> new RuntimeException("Project not found"));
+
+        // Update the status to "published"
+        project.setStatus("published");
+
+        // Save the updated project
+        fundingProjectRepository.save(project);
+    }
 }

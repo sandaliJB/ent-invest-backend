@@ -27,5 +27,9 @@ public class FundingController {
     public FundTransaction fundProject(@PathVariable String projectId, @RequestParam String investorId, @RequestParam double amount) {
         return fundingService.fundProject(projectId, investorId, amount);
     }
+    @PutMapping("/publish/{id}")
+    public void publishProject(@PathVariable String id) {
+        fundingService.publishProject(id);
+    }
 
 }
