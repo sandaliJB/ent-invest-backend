@@ -48,7 +48,6 @@ public class UserController {
      * Get all users. Restricted to users with "ROLE_ADMIN" authority.
      */
     @GetMapping("/all")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
@@ -80,7 +79,6 @@ public class UserController {
      * Delete user by ID. Restricted to users with "ROLE_ADMIN" authority.
      */
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void deleteUser(@PathVariable String id) {
         userService.deleteUser(id);
     }

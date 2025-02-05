@@ -93,7 +93,6 @@ public class EnterpriseController {
 
     // Delete Enterprise
     @DeleteMapping("/deleteEnterprise/{id}")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<String> deleteEnterprise(@PathVariable("id") String enterpriseId) {
         enterpriseService.deleteEnterprise(enterpriseId);
         return ResponseEntity.ok("Enterprise with ID " + enterpriseId + " has been deleted successfully.");

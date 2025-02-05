@@ -79,7 +79,6 @@ public class InvestmentController {
 
     // Delete Investor
     @DeleteMapping("/deleteInvestment/{id}")
-    //@PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<String> deleteInvestment(@PathVariable("id") String investmentId) {
         investmentService.deleteInvestment(investmentId);
         return ResponseEntity.ok("Investor with ID " + investmentId + " has been deleted successfully.");

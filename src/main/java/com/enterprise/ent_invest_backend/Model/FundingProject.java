@@ -8,9 +8,13 @@ public class FundingProject {
     private String projectId;
     private String projectName;
     private String description;
-    private String targetAmount;
     private String currentAmount;
     private String projectOwnerId;
+    private String actNumber;
+    private String actName;
+    private String branch;
+    private String bank;
+    private String status = "unpublished";
 
     public String getProjectId() {
         return projectId;
@@ -36,14 +40,6 @@ public class FundingProject {
         this.description = description;
     }
 
-    public String getTargetAmount() {
-        return targetAmount;
-    }
-
-    public void setTargetAmount(String targetAmount) {
-        this.targetAmount = targetAmount;
-    }
-
     public String getCurrentAmount() {
         return currentAmount;
     }
@@ -58,5 +54,45 @@ public class FundingProject {
 
     public void setProjectOwnerId(String projectOwnerId) {
         this.projectOwnerId = projectOwnerId;
+    }
+
+    public String getActNumber() {
+        return actNumber;
+    }
+
+    public void setActNumber(String actNumber) {
+        this.actNumber = actNumber;
+    }
+
+    public String getActName() {
+        return actName;
+    }
+
+    public void setActName(String actName) {
+        this.actName = actName;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
