@@ -53,7 +53,6 @@ public class EnterpriseController {
 
     // Get Enterprise by UserID
     @GetMapping("/getEnterpriseByUserId/{id}")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<List<Enterprise>> getEnterpriseByUserId(@PathVariable("id") String userId) {
         List<Enterprise> enterprise = enterpriseService.getEnterpriseByUserId(userId);
         return ResponseEntity.ok(enterprise);

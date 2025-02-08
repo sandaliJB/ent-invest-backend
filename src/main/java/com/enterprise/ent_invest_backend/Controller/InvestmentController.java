@@ -44,7 +44,6 @@ public class InvestmentController {
 
     // Get Investment by UserID
     @GetMapping("/getInvestmentByUserId/{id}")
-    //@PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<Optional<Investment>> getInvestmentByUserId(@PathVariable("id") String userId) {
         Optional<Investment> investment = investmentService.getInvestmentByUserId(userId);
         return ResponseEntity.ok(investment);
@@ -69,7 +68,6 @@ public class InvestmentController {
 
     // Update Investment
     @PutMapping("/updateInvestment/{id}")
-    //@PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<Investment> updateInvestment(
             @PathVariable("id") String investmentId,
             @RequestBody Investment investmentDetails) {
