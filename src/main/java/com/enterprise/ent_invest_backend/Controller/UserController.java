@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -50,6 +51,11 @@ public class UserController {
     @GetMapping("/all")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @GetMapping("/getUserByEmail/{userEmail}")
+    public Optional<User> getUserByUserEmail(@PathVariable String userEmail) {
+        return userService.getUserByEmail(userEmail);
     }
 
     /**
@@ -104,5 +110,24 @@ public class UserController {
     @PostMapping("/logout")
     public String logout(HttpSession session) {
         return userService.logout(session);
+    }
+
+    @PostMapping("/sendVerificationCode")
+    public String sendRecoveryCode(@RequestBody Map<String, String> payload) {
+        String userEmail = payload.get("userEmail");
+        if (userEmail == null || userEmail.isBlank()) {
+            throw new RuntimeException("Email cannot be empty.");
+        }
+        return userService.sendRecoveryCode(userEmail);
+    }
+
+    @PostMapping("/verifyRecoveryCode")
+    public boolean verifyRecoveryCode(@RequestParam String userEmail, @RequestParam String recoveryCode) {
+        return userService.verifyRecoveryCode(userEmail, recoveryCode);
+    }
+
+    @PostMapping("/updatePassword")
+    public User updatePassword(@RequestParam String userEmail, @RequestParam String newPassword) {
+        return userService.updatePassword(userEmail, newPassword);
     }
 }
