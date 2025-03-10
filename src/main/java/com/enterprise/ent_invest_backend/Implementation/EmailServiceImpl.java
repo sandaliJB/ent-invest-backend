@@ -63,13 +63,13 @@ public class EmailServiceImpl implements EmailService {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setTo("jayasinghesb2000@gmail.com");
-            helper.setSubject("Payment Confirmation - Fund Transfer ID: ");
+            helper.setSubject("Connect Confirmation");
             helper.setFrom("seedlink594@gmail.com");
 
             String emailContent = """
                 <html>
                 <body style="font-family: Arial, sans-serif;">
-                    <h2 style="color: #007bff;">Payment Confirmation</h2>
+                    <h2 style="color: #007bff;">Connect Confirmation</h2>
                     <p>Dear <strong>%s</strong>,</p>
                     <p>Your payment of <strong>$%.2f</strong> has been successfully processed.</p>
                     <p><strong>Fund Transfer ID:</strong> %s</p>
