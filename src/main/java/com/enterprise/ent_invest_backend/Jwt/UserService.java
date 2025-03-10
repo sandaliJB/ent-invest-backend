@@ -2,6 +2,7 @@ package com.enterprise.ent_invest_backend.Jwt;
 
 import com.enterprise.ent_invest_backend.Model.User;
 import com.enterprise.ent_invest_backend.Repository.UserRepository;
+import com.enterprise.ent_invest_backend.Service.UsersService;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class UserService {
+public class UserService implements UsersService {
 
     @Autowired
     private UserRepository userRepository;

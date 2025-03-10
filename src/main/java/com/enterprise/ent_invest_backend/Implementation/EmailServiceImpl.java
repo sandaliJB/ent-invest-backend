@@ -71,7 +71,7 @@ public class EmailServiceImpl implements EmailService {
                 <body style="font-family: Arial, sans-serif;">
                     <h2 style="color: #007bff;">Payment Confirmation</h2>
                     <p>Dear <strong>%s</strong>,</p>
-                    <p>Your payment of <strong>Rs%.2f</strong> has been successfully processed.</p>
+                    <p>Your payment of <strong>$%.2f</strong> has been successfully processed.</p>
                     <p><strong>Fund Transfer ID:</strong> %s</p>
                     <hr>
                     <p style="font-size: 14px; color: gray;">If you have any issues, please contact support.</p>
@@ -94,4 +94,8 @@ public class EmailServiceImpl implements EmailService {
         }
         return status;
     }
+
+
+
+
 }

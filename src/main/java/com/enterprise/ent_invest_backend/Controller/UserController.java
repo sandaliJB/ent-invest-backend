@@ -49,6 +49,7 @@ public class UserController {
      * Get all users. Restricted to users with "ROLE_ADMIN" authority.
      */
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
