@@ -34,7 +34,7 @@ public class EmailServiceImpl implements EmailService {
                 <body style="font-family: Arial, sans-serif;">
                     <h2 style="color: #007bff;">Payment Confirmation</h2>
                     <p>Dear <strong>%s</strong>,</p>
-                    <p>Your payment of <strong>$%.2f</strong> has been successfully processed.</p>
+                    <p>Your payment of <strong>Rs%.2f</strong> has been successfully processed.</p>
                     <p><strong>Fund Transfer ID:</strong> %s</p>
                     <hr>
                     <p style="font-size: 14px; color: gray;">If you have any issues, please contact support.</p>
@@ -56,40 +56,6 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
-    /*@Override
-    public void sendEmailEnt(String recipient, String name, String message, String projectId) {
-        try {
-            MimeMessage msg = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-
-            helper.setTo(recipient);
-            helper.setSubject("Payment Confirmation - Fund Transfer ID: " + projectId);
-            helper.setFrom("seedlink594@gmail.com");
-
-            String emailContent = """
-                <html>
-                <body style="font-family: Arial, sans-serif;">
-                    <h2 style="color: #007bff;">Payment Confirmation</h2>
-                    <p>Dear <strong>%s</strong>,</p>
-                    <p>Your payment of <strong>$%.2f</strong> has been successfully processed.</p>
-                    <p><strong>Fund Transfer ID:</strong> %s</p>
-                    <hr>
-                    <p style="font-size: 14px; color: gray;">If you have any issues, please contact support.</p>
-                    <p>Best regards,<br><strong>SeedLink Team</strong></p>
-                </body>
-                </html>
-            """.formatted(name, message, projectId);
-
-            helper.setText(emailContent, true);
-            mailSender.send(msg);
-
-            // Store the email in MongoDB
-            EmailRecord emailRecord = new EmailRecord(recipient, "seedlink594@gmail.com", "Payment Confirmation", emailContent);
-            emailRepository.save(emailRecord);
-
-        } catch (MessagingException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Failed to send email");*/
     @Override
     public boolean sendEmail(EmailRecord emailRequest) {
         boolean status;
@@ -128,4 +94,8 @@ public class EmailServiceImpl implements EmailService {
         }
         return status;
     }
+
+
+
+
 }
